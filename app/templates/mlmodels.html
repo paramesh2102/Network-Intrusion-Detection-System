@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Network Intrusion Detection System</title>
+    <link rel="stylesheet" href="static/style.css">
+
+    <style>
+        /* Add your CSS styles here */
+        body {
+            background-image: url('{{ url_for("static", filename="background_index_nids.jpg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Use min-height instead of height */
+            overflow-y: scroll; /* Add a vertical scrollbar if content overflows */
+        }
+
+        /* Adjust container height and add scrolling */
+        .login {
+            max-height: 80vh; /* Set a maximum height */
+
+            overflow-y: auto; /* Enable vertical scrolling when content overflows */
+        }
+    </style>
+</head>
+<body>
+    <h2 style="color: red;">Machine Learning Models</h2>
+    <div class="login">
+        <form id="dl-model-form" action="/predict_mlmodels" method="post">
+            <h2 style="color:red;">Input Values for Prediction</h2>
+
+            <!-- Input fields for the independent variables (features) -->
+            <label for="var1">dst_host_srv_serror_rate:</label>
+            <input type="text" id="var1" name="var1" data-order="0" onblur="validateInput(this)"><br><br>
+
+            <label for="var2">service:</label>
+            <select id="var2" name="var2" data-order="1" onblur="validateInput(this)">
+                <option value="">Select an option</option>
+                <option value="0">service_eco_i</option>
+                <option value="1">service_ecr_i</option>
+                <option value="2">service_ftp</option>
+                <option value="3">service_pop_3</option>
+                <option value="4">service_red_i</option>
+                <option value="5">service_urh_i</option>
+                <option value="6">service_urp_i</option>
+            </select><br><br>
+
+            <label for="var3">flag:</label>
+            <select id="var3" name="var3" data-order="2" onblur="validateInput(this)">
+                <option value="">Select an option</option>
+                <option value="0">flag_OTH</option>
+                <option value="1">flag_REJ</option>
+                <option value="2">flag_RSTO</option>
+                <option value="3">flag_RSTOS0</option>
+                <option value="4">flag_RSTR</option>
+                <option value="5">flag_S0</option>
+                <option value="6">flag_S1</option>
+                <option value="7">flag_S2</option>
+                <option value="8">flag_S3</option>
+                <option value="9">flag_SF</option>
+                <option value="10">flag_SH</option>
+            </select><br><br>
+
+            <label for="var4">dst_host_serror_rate:</label>
+            <input type="text" id="var4" name="var4" data-order="3" onblur="validateInput(this)"><br><br>
+
+            <label for="var5">diff_srv_rate:</label>
+            <input type="text" id="var5" name="var5" data-order="4" onblur="validateInput(this)"><br><br>
+
+            <label for="var6">dst_host_same_src_port_rate:</label>
+            <input type="text" id="var6" name="var6" data-order="5" onblur="validateInput(this)"><br><br>
+
+            <label for="var7">serror_rate:</label>
+            <input type="text" id="var7" name="var7" data-order="6" onblur="validateInput(this)"><br><br>
+
+            <label for="var8">wrong_fragment:</label>
+            <input type="text" id="var8" name="var8" data-order="7" onblur="validateInput(this)"><br><br>
+
+            <label for="var9">protocol_type:</label>
+            <select id="var9" name="var9" data-order="8" onblur="validateInput(this)">
+                <option value="">Select an option</option>
+                <option value="0">protocol_type_icmp</option>
+                <option value="1">protocol_type_tcp</option>
+                <option value="2">protocol_type_udp</option>
+            </select><br><br>
+
+            <label for="var10">logged_in:</label>
+            <input type="text" id="var10" name="var10" data-order="9" onblur="validateInput(this)"><br><br>
+
+            <label for="var11">srv_serror_rate:</label>
+            <input type="text" id="var11" name="var11" data-order="10" onblur="validateInput(this)"><br><br>
+
+            <label for="var12">dst_host_same_srv_rate:</label>
+            <input type="text" id="var12" name="var12" data-order="11" onblur="validateInput(this)"><br><br>
+
+            <label for="var13">is_host_login:</label>
+            <input type="text" id="var13" name="var13" data-order="12" onblur="validateInput(this)"><br><br>
+
+            <label for="var14">is_guest_login:</label>
+            <input type="text" id="var14" name="var14" data-order="13" onblur="validateInput(this)"><br><br>
+
+            <label for="var15">srv_diff_host_rate:</label>
+            <input type="text" id="var15" name="var15" data-order="14" onblur="validateInput(this)"><br><br>
+
+            <label for="var16">dst_host_srv_count:</label>
+            <input type="text" id="var16" name="var16" data-order="15" onblur="validateInput(this)"><br><br>
+
+            <label for="var17">count:</label>
+            <input type="text" id="var17" name="var17" data-order="16" onblur="validateInput(this)"><br><br>
+
+            <label for="var18">same_srv_rate:</label>
+            <input type="text" id="var18" name="var18" data-order="17" onblur="validateInput(this)"><br><br>
+
+            <label for="var19">dst_host_srv_diff_host_rate:</label>
+            <input type="text" id="var19" name="var19" data-order="18" onblur="validateInput(this)"><br><br>
+
+            <label for="var20">srv_count:</label>
+            <input type="text" id="var20" name="var20" data-order="19" onblur="validateInput(this)"><br><br>
+
+            <label for="var21">dst_host_diff_srv_rate:</label>
+            <input type="text" id="var21" name="var21" data-order="20" onblur="validateInput(this)"><br><br>
+
+            <label for="var22">num_failed_logins:</label>
+            <input type="text" id="var22" name="var22" data-order="21" onblur="validateInput(this)"><br><br>
+
+            <label for="var23">land:</label>
+            <input type="text" id="var23" name="var23" data-order="22" onblur="validateInput(this)"><br><br>
+
+            <!-- Dropdown list to select the deep learning algorithm -->
+            <label for="dl-algorithms">Select Machine Learning Algorithm:</label>
+            <select id="dl-algorithms">
+                <option value="DecisionTreeClassifier">DecisionTreeClassifier</option>
+                <option value="KNeighborsClassifier">KNeighborsClassifier</option>
+                <option value="RandomForestClassifier">RandomForestClassifier</option>
+		        <option value="SVC">SVC</option>
+                <option value="LogisticRegression">LogisticRegression</option>
+                <option value="MultinomialNB">MultinomialNB</option>
+                <!-- Add more options for other deep learning algorithms as needed -->
+            </select>
+
+
+
+            <!-- Button to trigger prediction -->
+            <button type="button" onclick="predictAttackType()">Predict Attack Type</button>
+
+            </select><br><br>
+
+            <!-- Display the prediction result here -->
+            <div id="prediction-result"style="color: red;">
+                <!-- The prediction result will be displayed here -->
+            </div>
+
+            <!-- JavaScript code for prediction -->
+            <script>
+                function predictAttackType() {
+                    // Get the values of all input fields
+                    const var1 = document.getElementById('var1').value;
+                    const var2 = document.getElementById('var2').value;
+                    const var3 = document.getElementById('var3').value;
+                    const var4 = document.getElementById('var4').value;
+                    const var5 = document.getElementById('var5').value;
+                    const var6 = document.getElementById('var6').value;
+                    const var7 = document.getElementById('var7').value;
+                    const var8 = document.getElementById('var8').value;
+                    const var9 = document.getElementById('var9').value;
+                    const var10 = document.getElementById('var10').value;
+                    const var11 = document.getElementById('var11').value;
+                    const var12 = document.getElementById('var12').value;
+                    const var13 = document.getElementById('var13').value;
+                    const var14 = document.getElementById('var14').value;
+                    const var15 = document.getElementById('var15').value;
+                    const var16 = document.getElementById('var16').value;
+                    const var17 = document.getElementById('var17').value;
+                    const var18 = document.getElementById('var18').value;
+                    const var19 = document.getElementById('var19').value;
+                    const var20 = document.getElementById('var20').value;
+                    const var21 = document.getElementById('var21').value;
+                    const var22 = document.getElementById('var22').value;
+                    const var23 = document.getElementById('var23').value;
+
+                    // Store the entered data by the user
+                    const inputData = {
+                        var1, var2, var3, var4, var5, var6, var7, var8, var9,
+                        var10, var11, var12, var13, var14, var15, var16, var17, var18, var19,
+                        var20, var21, var22, var23
+                    };
+
+                    // Check if any of the input fields are empty
+                    const isEmpty = Object.values(inputData).some(value => value.trim() === '');
+
+                    if (isEmpty) {
+                        alert('Please provide values for all input variables.');
+                        return; // Exit the function without making a prediction
+                    }
+
+                    // Clear the previous prediction result
+                    const predictionResultDiv = document.getElementById('prediction-result');
+                    predictionResultDiv.textContent = '';
+
+                    // Get the selected algorithm from the dropdown list
+                    const selectedAlgorithm = document.getElementById('dl-algorithms').value;
+
+                    // Create a new FormData object from the form
+                    const formData = new FormData(document.getElementById('dl-model-form'));
+
+                    // Add the selected algorithm to the FormData
+                    formData.append('algorithm', selectedAlgorithm);
+
+                    // Send an AJAX request to the server to get the prediction result
+                    fetch("/predict_mlmodels", {
+                        method: "POST",
+                        body: formData,
+                    })
+
+                    .then((response) => response.text())
+                    .then((predictionResult) => {
+                        // Display the new prediction result in the "prediction-result" div
+                        predictionResultDiv.textContent = `Prediction using ${selectedAlgorithm}: ${predictionResult}`;
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                }
+
+                // Function to handle keyboard events
+                function handleKeyPress(event) {
+                    const currentInputId = document.activeElement.id; // Get the ID of the currently focused input field
+                    const currentInputOrder = parseInt(document.activeElement.getAttribute('data-order'));
+
+                    if (event.key === 'ArrowUp') {
+                        // Move focus to the previous input field (if it exists)
+                        const previousInputOrder = currentInputOrder - 1;
+                        const previousInput = document.querySelector(`[data-order="${previousInputOrder}"]`);
+
+                        if (previousInput) {
+                            previousInput.focus();
+                        }
+                    } else if (event.key === 'ArrowDown') {
+                        // Move focus to the next input field (if it exists)
+                        const nextInputOrder = currentInputOrder + 1;
+                        const nextInput = document.querySelector(`[data-order="${nextInputOrder}"]`);
+
+                        if (nextInput) {
+                            nextInput.focus();
+                        }
+                    }
+                }
+
+                // Function to validate input fields
+                function validateInput(inputElement) {
+                    const inputValue = inputElement.value.trim(); // Remove leading/trailing spaces
+
+                    if (inputValue === '') {
+                        // Input is empty, clear the error message
+                        return; // Exit the function without further validation
+                    }
+
+                    // Use a regular expression to check if the input is a valid integer or floating-point number
+                    const validInputPattern = /^(\d+(\.\d*)?|\.\d+)$/;
+
+                    if (!validInputPattern.test(inputValue)) {
+                        // The input is not valid, display a pop-up alert and clear the input field
+                        alert('Please enter an integer or floating-point number.');
+                        inputElement.value = ''; // Clear the input field
+                    }
+                }
+
+                // Add a keydown event listener to the document for keyboard navigation
+                document.addEventListener('keydown', handleKeyPress);
+            </script>
+        </form>
+    </div>
+
+    <h2 style="color: red;">Machine Learning Models</h2>
+
+</body>
+</html>

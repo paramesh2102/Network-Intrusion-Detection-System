@@ -1,0 +1,13 @@
+accuracies:
+decisiontreeclassifier:Accuracy: 0.9780164287638029
+kneighboursclassifier:Accuracy: 0.978218421761379
+logisticregression:Accuracy: 0.9521949905736601
+multinomialnb:Accuracy: 0.908598168596822
+randomforestclassifier:Accuracy: 0.9819889577161325
+svc:Accuracy: 0.9601737139779154
+cnn:97
+fnn:Accuracy: Test Accuracy: 97.52%
+rnn:Test Accuracy: 91.25%
+
+attack class prediction:logistic regression
+now rnn has the issue values between 0to 40 in feature work on the rnn algorithm correctly

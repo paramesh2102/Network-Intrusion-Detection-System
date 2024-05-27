@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-Time Monitoring Dashboard</title>
+    <!-- Include CSS and JavaScript libraries as needed -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="d3.min.js"></script>
+    <!-- Include your custom JavaScript and CSS files -->
+    <script src="real_time_monitoring.js"></script>
+    <link rel="stylesheet" href="real_time_monitoring.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Real-Time Network Intrusion Detection</h1>
+        <!-- Add navigation menus or buttons -->
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Live Dashboard</a></li>
+                <li><a href="#">Alerts</a></li>
+                <li><a href="#">Reports</a></li>
+                <!-- Add more menu items as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Real-Time Monitoring Section -->
+    <section id="real-time-monitoring">
+        <!-- Live dashboard for real-time network traffic monitoring -->
+        <div id="live-dashboard">
+            <!-- Use D3.js or other libraries for data visualization -->
+            <!-- Display network traffic patterns and anomalies -->
+            <div id="visualization">
+                <!-- D3.js visualization will be added here -->
+            </div>
+        </div>
+
+        <!-- Alerts and Notifications -->
+        <div id="alerts">
+            <!-- Display alerts and notifications for suspicious activities -->
+            <!-- You can use JavaScript to update and display alerts in real-time -->
+        </div>
+    </section>
+
+    <!-- Data Filtering Section -->
+    <section id="data-filtering">
+        <!-- Add UI elements for data filtering -->
+        <div id="filter-options">
+            <!-- Example: Date range filter -->
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" name="start-date">
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" name="end-date">
+            <button id="apply-filter">Apply Filter</button>
+        </div>
+        <!-- Implement data filtering logic using JavaScript -->
+        <div id="filtered-visualization">
+            <!-- Filtered visualization will be added here -->
+        </div>
+    </section>
+
+    <!-- Anomaly Detection Section -->
+    <section id="anomaly-detection">
+        <!-- Implement anomaly detection algorithms -->
+        <div id="anomaly-results">
+            <!-- Display anomaly detection results -->
+        </div>
+    </section>
+
+    <!-- User Authentication Section -->
+    <section id="user-authentication">
+        <!-- Implement user authentication UI and logic -->
+        <div id="auth-form">
+            <!-- Example: Username and Password fields -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <button id="login-button">Log In</button>
+        </div>
+    </section>
+
+    <!-- JavaScript for Real-Time Monitoring -->
+    <script>
+        // Connect to the WebSocket server for real-time data updates
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // Handle real-time data updates and visualization here
+        socket.on('update', function(data) {
+            // Process and update data visualization
+            updateVisualization(data);
+            // Display alerts based on data
+            displayAlerts(data);
+        });
+
+        // Send data to the server when needed
+        function sendDataToServer(data) {
+            socket.emit('my_event', data);
+        }
+
+        // Implement data filtering, anomaly detection, and user authentication logic here
+        // ...
+
+        // Function to update data visualization (D3.js or other library)
+        function updateVisualization(data) {
+            // Update your visualization here
+            // Example: Update D3.js chart
+        }
+
+        // Function to display alerts and notifications
+        function displayAlerts(data) {
+            // Display alerts based on incoming data
+            // Example: Append alerts to the alerts div
+        }
+
+        // Implement data filtering logic and update filtered visualization
+        function applyDataFilter() {
+            // Implement data filtering based on user input
+            // Update the filtered visualization
+        }
+
+        // Implement anomaly detection logic and display results
+        function detectAnomalies() {
+            // Implement anomaly detection algorithms
+            // Display detection results in the anomaly-results div
+        }
+
+        // Implement user authentication logic
+        function authenticateUser() {
+            // Implement user authentication logic (e.g., check credentials)
+            // Provide access to authenticated users
+        }
+    </script>
+</body>
+</html>

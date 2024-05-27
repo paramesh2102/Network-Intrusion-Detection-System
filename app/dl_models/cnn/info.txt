@@ -1,0 +1,159 @@
+['apache2', 'back', 'buffer_overflow', 'ftp_write', 'guess_passwd',
+       'httptunnel', 'imap', 'ipsweep', 'land', 'loadmodule', 'mailbomb',
+       'mscan', 'multihop', 'named', 'neptune', 'nmap', 'normal', 'perl',
+       'phf', 'pod', 'portsweep', 'processtable', 'ps', 'rootkit', 'saint',
+       'satan', 'sendmail', 'smurf', 'snmpgetattack', 'snmpguess', 'spy',
+       'sqlattack', 'teardrop', 'udpstorm', 'warezclient', 'warezmaster',
+       'worm', 'xlock', 'xsnoop', 'xterm']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+duration	src_bytes	dst_bytes	land	wrong_fragment	urgent	hot	num_failed_logins	logged_in	num_compromised	root_shell	su_attempted	protocol_type_icmp	protocol_type_tcp	protocol_type_udp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+installed versions
+
+pip install keras==2.3.0
+pip install tensorflow==1.14.0
+
+previous versions used/no errors versions
+
+pip install Keras==2.14.0
+pip install TensorFlow==2.14.0
+
+UserWarning: Trying to unpickle estimator LogisticRegression from version 0.22.1 when using version 1.0.2.
+
+
+
+
+
+
+
+
+
+
+
+
+from keras.optimizers import Adam
+optimizer = Adam(learning_rate=0.001, decay=1e-6)
+
+
+
+
+
+
+
+
+
+['duration', 'src_bytes', 'dst_bytes', 'land', 'wrong_fragment',
+       'urgent', 'hot', 'num_failed_logins', 'logged_in', 'num_compromised',
+       'root_shell', 'su_attempted', 'protocol_type_icmp', 'protocol_type_tcp',
+       'protocol_type_udp']
+
+
+
+from google.colab import drive
+import shutil
+
+# Mount Google Drive
+drive.mount('/content/drive')
+
+# Define the source path (where the model is saved in Colab)
+source_path = '/content/my_model.h5'  # Update with your file path
+
+# Define the destination path (where you want to save it locally)
+destination_path = 'D:\\nids_website\\app\\dl_models\\cnn\\mymodel.h5'  # Update with your desired local file path
+
+# Copy the model from Colab to your local machine
+shutil.copyfile(source_path, destination_path)
+
+
+
+
+
+
+
+
+
+batch_size = 32
+model = Sequential()
+model.add(Convolution1D(64, kernel_size=15, padding="same",activation="relu",input_shape=(15, 1)))
+model.add(MaxPooling1D(pool_size=(5)))
+model.add(BatchNormalization())
+model.add(Flatten())
+model.add(Dropout(0.5))
+model.add(Dense(5))
+model.add(Activation('softmax'))
+model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from keras.models import load_model
+
+# Load the model in HDF5 format
+model = load_model('my_model.h5')
+
+a=np.array([[[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15]]])
+a=(a-a.min())/(a.max()-a.min())
+pr2=model.predict(a)
+pr2 = np.argmax(pr2,axis=1)
+pr2
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NIDS Website</title>
+    <style>
+        body {
+            background-image: url('{{ url_for("static", filename="background_index.jpg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .auth-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        h1, p {
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-buttons">
+        <a href="/login" class="button">Login</a>
+        <a href="/signup" class="button">Sign Up</a>
+    </div>
+    <h1>Network Intrusion Detection System</h1>
+    <p>Welcome to our NIDS website!</p>
+</body>
+</html>
